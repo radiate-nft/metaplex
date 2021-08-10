@@ -482,7 +482,7 @@ export function Notifications() {
       content={content}
       trigger="click"
     >
-      <h1 className="title">M</h1>
+      <h1 className="title">RADIATE</h1>
     </Popover>
   );
 
