@@ -1,0 +1,21 @@
+name: deploy-pages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Install and Build 🔧 
+        run: |
+          cd js; yarn; yarn bootstrap; yarn build; cd packages/web; yarn export
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: js/build/web # The folder the action should deploy.
