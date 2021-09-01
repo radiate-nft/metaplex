@@ -13,7 +13,9 @@ jobs:
       - name: Install and Build 🔧 
         run: |
           cd js; yarn; yarn bootstrap; yarn build; cd packages/web; yarn export
-
+        env:
+          REACT_APP_STORE_OWNER_ADDRESS_ADDRESS: ${{ secrets.REACT_APP_STORE_OWNER_ADDRESS_ADDRESS }}
+          REACT_APP_STORE_ADDRESS: ${{ secrets.REACT_APP_STORE_ADDRESS }}
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
