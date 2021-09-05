@@ -63,6 +63,15 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       <Link to={`/artists`}>
         <Button className="app-btn">Creators</Button>
       </Link>
+      <Link to={`/`}>
+      <Button
+        className="app-btn"
+        onClick={() =>
+          window.location.href = 'https://drop.radiatenft.com'
+        }
+      > Drop
+      </Button>
+      </Link>
     </div>
   );
 };
@@ -96,6 +105,15 @@ const MetaplexMenu = () => {
                 <Link to={`/artists`}>
                   <Button className="app-btn">Creators</Button>
                 </Link>
+              </Menu.Item>
+              <Menu.Item>
+              <Button
+              className="app-btn"
+              onClick={() =>
+                window.location.href = 'https://drop.radiatenft.com'
+              }
+              > Drop
+              </Button>
               </Menu.Item>
             </Menu>
           }
