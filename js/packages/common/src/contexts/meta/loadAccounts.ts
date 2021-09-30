@@ -19,6 +19,7 @@ import {
   decodeMetadata,
   getAuctionExtended,
 } from '../../actions';
+import { uniqWith } from 'lodash';
 import { WhitelistedCreator } from '../../models/metaplex';
 import { Connection, PublicKey } from '@solana/web3.js';
 import {
@@ -271,6 +272,13 @@ export const loadAccounts = async (connection: Connection) => {
   const updateState = makeSetter(state);
   const forEachAccount = processingAccounts(updateState);
 
+  const forEach =
+    (fn: ProcessAccountsFunc) => async (accounts: AccountAndPubkey[]) => {
+      for (const account of accounts) {
+        await fn(account, updateState);
+      }
+    };
+
   const loadVaults = () =>
     getProgramAccounts(connection, VAULT_ID).then(
       forEachAccount(processVaultData),
@@ -290,7 +298,7 @@ export const loadAccounts = async (connection: Connection) => {
           dataSize: MAX_WHITELISTED_CREATOR_SIZE,
         },
       ],
-    }).then(forEachAccount(processMetaplexAccounts));
+    }).then(forEach(processMetaplexAccounts));
   const loadMetadata = () =>
     pullMetadataByCreators(connection, state, updateState);
   const loadEditions = () => pullEditions(connection, updateState, state);
@@ -304,7 +312,11 @@ export const loadAccounts = async (connection: Connection) => {
 
   await Promise.all(loading);
 
-  console.log('Metadata size', state.metadata.length);
+  state.metadata = uniqWith(
+    state.metadata,
+    (a: ParsedAccount<Metadata>, b: ParsedAccount<Metadata>) =>
+      a.pubkey === b.pubkey,
+  );
 
   return state;
 };
