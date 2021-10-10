@@ -72,6 +72,15 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       > Drop
       </Button>
       </Link>
+      <Link to={`/`}>
+      <Button
+        className="app-btn"
+        onClick={() =>
+          window.location.href = 'https://radiatevalidator.com'
+        }
+      > Validator
+      </Button>
+      </Link>
     </div>
   );
 };
@@ -113,6 +122,15 @@ const MetaplexMenu = () => {
                 window.location.href = 'https://drop.radiatenft.com'
               }
               > Drop
+              </Button>
+              </Menu.Item>
+              <Menu.Item>
+              <Button
+              className="app-btn"
+              onClick={() =>
+                window.location.href = 'https://radiatevalidator.com'
+              }
+              > Validator
               </Button>
               </Menu.Item>
             </Menu>
