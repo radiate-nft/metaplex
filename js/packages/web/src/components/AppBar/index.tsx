@@ -130,7 +130,7 @@ const MetaplexMenu = () => {
               onClick={() =>
                 window.location.href = 'https://radiatevalidator.com'
               }
-              > Validator 
+              > Validator
               </Button>
               </Menu.Item>
             </Menu>
