@@ -564,7 +564,7 @@ export function Notifications() {
       content={content}
       trigger="click"
     >
-      <h1 className="title">Radiate</h1>
+      <img src="https://radiate-cdn.sfo3.cdn.digitaloceanspaces.com/inverted-radiate-logo.png"/>
     </Popover>
   );
 
